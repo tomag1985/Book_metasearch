@@ -1,2 +1,7 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<h1>Book Search</h1>
+<p>Find your favourite book:</p>
+
+<%= form_tag books_path, :method => "get" do %>
+  <%= text_field_tag :search_online, params[:search_online] %>
+  <%= submit_tag("Search") %>
+<% end %>
