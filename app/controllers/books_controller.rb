@@ -26,11 +26,13 @@ class BooksController < ApplicationController
     price = doc.search('//*[@id="ctl00_ContentPlaceHolder1_resultadosItems_rptResultadosMosaico_ctl00_article_container"]/div[2]/div[2]/div').text.strip
     title = doc.search('//*[@id="ctl00_ContentPlaceHolder1_resultadosItems_rptResultadosMosaico_ctl00_a_titulo"]').text.strip.split.map(&:capitalize).join(' ')
     author = doc.search('//*[@id="ctl00_ContentPlaceHolder1_resultadosItems_rptResultadosMosaico_ctl00_rptAutores_ctl00_a_autor"]').text.strip
+    img_src = doc.search('//*[@id="ctl00_ContentPlaceHolder1_resultadosItems_rptResultadosMosaico_ctl00_img_tapa"]')[0]["src"]
+
     if price.empty? || title.empty? || author.empty?
-      Book.new("Book not found", "N/A", "N/A", "N/A", library, "N/A")		
+      Book.new(title: "Book not found", description: "N/A", rating: "N/A", library: library, price: "N/A", img_src: "N/A")		
     else
       book = search_description_and_rating(title)
-      Book.new(title: title, description: book[:description], rating: book[:rating], library: library, price: price)
+      Book.new(title: title, author: author, description: book[:description], rating: book[:rating], library: library, price: price, img_src: img_src)
     end
   end
 
@@ -43,10 +45,10 @@ class BooksController < ApplicationController
     title = doc.search('/html/body/div[2]/div/div[2]/div[1]/div[2]/table/tbody/tr[2]/td[2]/a/span').text.strip.split.map(&:capitalize).join(' ')
     author = doc.search('/html/body/div[2]/div/div[2]/div[1]/div[2]/table/tbody/tr[2]/td[1]/a/span').text.strip.split.map(&:capitalize).join(' ')
     if price.empty? || title.empty? || author.empty?
-      Book.new("Book not found", "N/A", "N/A", "N/A", library, "N/A")		
+      Book.new(title: "Book not found", description: "N/A", rating: "N/A", library: library, price: "N/A")
     else
       book = search_description_and_rating(title)
-      Book.new(title: title, description: book[:description], rating: book[:rating], library: library, price: price)
+      Book.new(title: title, author: author, description: book[:description], rating: book[:rating], library: library, price: price)
     end	
   end
 
@@ -58,11 +60,17 @@ class BooksController < ApplicationController
     price = doc.search('/html/body/div/div[6]/div/div/div[1]/div/div/div[2]/ul/li[1]/div/div[2]/div[2]/span/span').text.strip
     title = doc.search('/html/body/div/div[6]/div/div/div[1]/div/div/div[2]/ul/li[1]/div/div[2]/h5/a').text.strip.split.map(&:capitalize).join(' ')
     author = doc.search('/html/body/div/div[6]/div/div/div[1]/div/div/div[2]/ul/li[1]/div/div[2]/div[1]').text.strip.split.map(&:capitalize).join(' ')
+
+    if title != ""
+      img = doc.search('.product-image img')
+      img_src = img[4]["src"] 
+    end
+    
     if price.empty? || title.empty? || author.empty?
-      Book.new("Book not found", "N/A", "N/A", "N/A", library, "N/A")		
+      Book.new(title:"Book not found", description: "N/A", rating: "N/A", library: library, price: "N/A", img_src:"N/A")		
     else
       book = search_description_and_rating(title)
-      Book.new(title: title, description: book[:description], rating: book[:rating], library: library, price: price)
+      Book.new(title: title, author: author, description: book[:description], rating: book[:rating], library: library, price: price, img_src: img_src)
     end
   end
 
