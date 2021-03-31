@@ -1,5 +1,24 @@
 <h1>Llegamo'!!</h1>
 
-<%= @books[:cuspide][:title] %>
-<%= @books[:yenny][:title] %>
-<%= @books[:hernandez][:title] %>
+<ul>
+
+  <li>
+    <%= @books[:cuspide][:title] %> escrito por: <%= @books[:cuspide][:author] %>. Precio: <%= @books[:cuspide][:price] %>. En librería: <%= @books[:cuspide][:library] %>
+  </li>
+  
+  <li>
+    <img src="<%= @books[:cuspide][:img_src] %>" alt="book_cover">
+  </li>
+
+  <li>
+    <%= @books[:yenny][:title] %> escrito por: <%= @books[:yenny][:author] %>. Precio: <%= @books[:yenny][:price] %>. En librería: <%= @books[:yenny][:library] %>
+  </li>
+
+  <li>
+    <img src="<%= @books[:yenny][:img_src] %>" alt="book_cover">
+  </li>
+
+  <li>
+    <%= @books[:hernandez][:title] %> escrito por: <%= @books[:hernandez][:author] %>. Precio: <%= @books[:hernandez][:price] %>. En librería: <%= @books[:hernandez][:library] %>
+  </li>
+</ul>
