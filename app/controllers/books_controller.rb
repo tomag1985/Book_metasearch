@@ -37,13 +37,14 @@ class BooksController < ApplicationController
   end
 
   def search_hernandez(search_term)
-    url = "https://www.libreriahernandez.com/busquedaRapida?perPage=14&sortBy=stockAndTitle&value=#{search_term}&image.x=10&image.y=16"
+    url = "https://www.bookdepository.com/es/search?searchTerm=#{search_term}&search=Find+book"
     html_content = open(url)
     doc = Nokogiri::HTML(html_content)
-    library = "Hernandez"
-    price = doc.search('/html/body/div[2]/div/div[2]/div[1]/div[2]/table/tbody/tr[2]/td[6]').text.strip
-    title = doc.search('/html/body/div[2]/div/div[2]/div[1]/div[2]/table/tbody/tr[2]/td[2]/a/span').text.strip.split.map(&:capitalize).join(' ')
-    author = doc.search('/html/body/div[2]/div/div[2]/div[1]/div[2]/table/tbody/tr[2]/td[1]/a/span').text.strip.split.map(&:capitalize).join(' ')
+    library = "Book Depository"
+    raise
+    price = doc.search('/html/body/div/div[6]/div/div/div[1]/div/div/div[2]/ul/li/div/div[2]/h5/a').text.strip
+    title = doc.search('/html/body/div/div[6]/div/div/div[1]/div/div/div[2]/ul/li/div/div[2]/h5/a').text.strip.split.map(&:capitalize).join(' ')
+    author = doc.search('/html/body/div/div[6]/div/div/div[1]/div/div/div[2]/ul/li/div/div[2]/div[1]').text.strip.split.map(&:capitalize).join(' ')
     if price.empty? || title.empty? || author.empty?
       Book.new(title: "Book not found", description: "N/A", rating: "N/A", library: library, price: "N/A")
     else
