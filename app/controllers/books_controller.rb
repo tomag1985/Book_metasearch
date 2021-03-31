@@ -15,8 +15,12 @@ class BooksController < ApplicationController
   end
   
   def create
-    @book = Book.new(params[:book])
+    @book = Book.find_or_created_by(params[:book])
+    UserBook.create(book:@book, user: @current)
   end
+
+
+  private
 
   def search_cuspide(search_term)
     url = "https://www.cuspide.com/resultados.aspx?c=#{search_term}&por=pal"

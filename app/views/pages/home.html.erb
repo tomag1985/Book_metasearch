@@ -9,12 +9,23 @@
   <% end %>
 
   <div class="sugerencias-yenny" style="margin-top: 20px;">
-    <h4>Sugerencias Yenny:</h4>
+    <h4>Los más buscados en Yenny:</h4>
     <% @suggestions[:yenny].each do |suggestion| %>
       <a href="<%= suggestion[1]["href"] %>" target=”_blank”>
         <img src="<%= suggestion[0]["src"] %>" alt="alt" width="167" height="240">
       </a>
     <% end %>
   </div>
+
+  <div class="sugerencias-cuspide" style="margin-top: 20px;">
+    <h4>Los 100 más vendidos de la semana en Cuspide:</h4>
+    <% @suggestions[:cuspide].each do |suggestion| %>
+      <a href="<%= suggestion[1] %>" target=”_blank”>
+        <img src="<%= suggestion[0] %>" alt="alt" width="167" height="240">
+      </a>
+    <% end %>
+  </div>
+
+
 
 </div>
