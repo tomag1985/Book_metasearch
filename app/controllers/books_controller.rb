@@ -44,11 +44,20 @@ class BooksController < ApplicationController
     price = doc.search('/html/body/div[2]/div/div[2]/div[1]/div[2]/table/tbody/tr[2]/td[6]').text.strip
     title = doc.search('/html/body/div[2]/div/div[2]/div[1]/div[2]/table/tbody/tr[2]/td[2]/a/span').text.strip.split.map(&:capitalize).join(' ')
     author = doc.search('/html/body/div[2]/div/div[2]/div[1]/div[2]/table/tbody/tr[2]/td[1]/a/span').text.strip.split.map(&:capitalize).join(' ')
+    
+    first_url = doc.search('#tabla a')
+    first_url = first_url[5]["href"]
+    href = "https://www.libreriahernandez.com#{first_url}"
+    html_content = open(href)
+    doc = Nokogiri::HTML(html_content)
+    path = doc.at_xpath("/html/body/div[2]/div/div[2]/div[1]/div[1]/div[1]/img")["src"]
+    img_src = "https://#{path}"
+
     if price.empty? || title.empty? || author.empty?
       Book.new(title: "Book not found", description: "N/A", rating: "N/A", library: library, price: "N/A")
     else
       book = search_description_and_rating(title)
-      Book.new(title: title, author: author, description: book[:description], rating: book[:rating], library: library, price: price)
+      Book.new(title: title, author: author, description: book[:description], rating: book[:rating], library: library, price: price, img_src: img_src)
     end	
   end
 
