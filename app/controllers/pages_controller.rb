@@ -75,14 +75,30 @@ class PagesController < ApplicationController
     covers_img = []
     urls = []
     hash = {}
+    test = []
   
+    i = 1
     url = "http:"
     covers.each do |cover|
-      cover = cover.at_xpath('//*[@id="content"]/div[3]/ul[1]/li[1]/div[1]/a/img')["src"]
+      cover = cover.at_xpath("//*[@id='content']/div[3]/ul[#{i}]/li[1]/div[1]/a/img")["src"]
       covers_img << url + cover
+      i += 1
     end
-    
-    
+
+    i = 1
+    url = "https://www.libreriahernandez.com/"
+    covers.each do |cover|
+      cover = cover.at_xpath("//*[@id='content']/div[3]/ul[#{i}]/li[1]/div[1]/a")["href"]
+      urls << url + cover
+      i += 1
+    end
+
+    i = 0
+    covers_img.each do |cover|
+      hash[cover] = urls[i]
+      i += 1
+    end
+    hash
   end
 
 
@@ -90,10 +106,11 @@ class PagesController < ApplicationController
   def suggestions
     yenny = search_yenny
     cuspide = search_cuspide
-    #hernandez = search_hernandez
+    hernandez = search_hernandez
     books = {}
     books[:yenny] = yenny
     books[:cuspide] = cuspide
+    books[:hernandez] = hernandez
     books
   end
 end

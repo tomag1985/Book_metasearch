@@ -27,5 +27,14 @@
   </div>
 
 
+  <div class="sugerencias-hernandez" style="margin-top: 20px;">
+    <h4>Recomendados por Librería Hernández:</h4>
+    <% @suggestions[:hernandez].each do |suggestion| %>
+      <a href="<%= suggestion[1] %>" target=”_blank”>
+        <img src="<%= suggestion[0] %>" alt="alt" width="167" height="240">
+      </a>
+    <% end %>
+  </div>
+
 
 </div>
