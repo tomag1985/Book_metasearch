@@ -1,37 +1,39 @@
-<div class="container">
-
-  <h1>Book Search</h1>
-  <p>Find your favourite book:</p>
-
-  <%= form_tag books_path, :method => "get" do %>
-    <%= text_field_tag :search_online, params[:search_online] %>
-    <%= submit_tag("Search") %>
-  <% end %>
-
-  <div class="sugerencias-yenny" style="margin-top: 20px;">
-    <h4>Los más buscados en Yenny:</h4>
-    <% @suggestions[:yenny].each do |suggestion| %>
-      <a href="<%= suggestion[1]["href"] %>" target=”_blank”>
-        <img src="<%= suggestion[0]["src"] %>" alt="alt" width="167" height="240">
-      </a>
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://www.unioncountync.gov/application/files/8315/9432/1864/library-books-for-facebook.jpg);">
+  <div class="container">
+    <h1>BookAdvisor || SherlockSearch </h1>
+    <p>Find your favourite book, just one step from your next reading adventure!</p>
+    <%= form_tag books_path, :method => "get" do %>
+      <%= text_field_tag :search_online, params[:search_online] %>
+      <%= submit_tag "Search", class:"btn-search" %>
     <% end %>
+  </div>
+</div>
+
+<div class="container">
+  <div class="sugerencias-yenny" style="margin-top: 20px;">
+    <h4>Top searching at Yenny:</h4>
+      <% @suggestions[:yenny].each do |suggestion| %>
+        <a href="<%= suggestion[1]["href"] %>" target=”_blank”>
+          <img src="<%= suggestion[0]["src"] %>" alt="alt" width="145" height="200" class="zoom">
+        </a>
+      <% end %>
   </div>
 
   <div class="sugerencias-cuspide" style="margin-top: 20px;">
-    <h4>Los 100 más vendidos de la semana en Cuspide:</h4>
+    <h4>The best 100 of the week at Cuspide:</h4>
     <% @suggestions[:cuspide].each do |suggestion| %>
       <a href="<%= suggestion[1] %>" target=”_blank”>
-        <img src="<%= suggestion[0] %>" alt="alt" width="167" height="240">
+        <img src="<%= suggestion[0] %>" alt="alt" width="145" height="200" class="zoom">
       </a>
     <% end %>
   </div>
 
 
   <div class="sugerencias-hernandez" style="margin-top: 20px;">
-    <h4>Recomendados por Librería Hernández:</h4>
+    <h4>Recomended by Librería Hernández:</h4>
     <% @suggestions[:hernandez].each do |suggestion| %>
       <a href="<%= suggestion[1] %>" target=”_blank”>
-        <img src="<%= suggestion[0] %>" alt="alt" width="167" height="240">
+        <img src="<%= suggestion[0] %>" alt="alt" width="145" height="200" class="zoom">
       </a>
     <% end %>
   </div>
