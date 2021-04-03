@@ -1,31 +1,70 @@
-<h1>Llegamo'!!</h1>
+<div class="container">
+  <div class="row align-center">
+    <div class="col-12">
+    <h1 class="my-4">Results</h1>
 
-<ul>
+      <div class="card mb-3" style="max-width: 800px;">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img src="<%= @books[:cuspide][:img_src] %>" alt="book_cover" class="img-card w-100 p-1">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title"><%= @books[:cuspide][:title] %></h5>
+              <p class="card-text">
+              <p>Author: <%= @books[:cuspide][:author] %></p>
+              <p>Price: <%= @books[:cuspide][:price] %></p>
+              <p>Library: <%= @books[:cuspide][:library] %></p>
+              </p>
+              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+          </div>
+        </div>
+      </div>
 
-  <li>
-    <%= @books[:cuspide][:title] %> 
-    <p>escrito por: <%= @books[:cuspide][:author] %>. Precio: <%= @books[:cuspide][:price] %>. En librería: <%= @books[:cuspide][:library] %></p>
-  </li>
-  
-  <li>
-    <img src="<%= @books[:cuspide][:img_src] %>" alt="book_cover" width="167" height="240">
-  </li>
+      <hr>
 
-  <li>
-    <%= @books[:yenny][:title] %> escrito por: <%= @books[:yenny][:author] %>. Precio: <%= @books[:yenny][:price] %>. En librería: <%= @books[:yenny][:library] %>
-  </li>
+      <div class="card mb-3 align-center" style="max-width: 800px;">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img src="<%= @books[:yenny][:img_src] %>" alt="book_cover" class="img-card w-100 p-1">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title"><%= @books[:yenny][:title] %></h5>
+              <p class="card-text">
+              <p>Author: <%= @books[:yenny][:author] %></p>
+              <p>Price: <%= @books[:yenny][:price] %></p>
+              <p>Library: <%= @books[:yenny][:library] %></p>
+              </p>
+              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+          </div>
+        </div>
+      </div>
 
-  <li>
-    <img src="<%= @books[:yenny][:img_src] %>" alt="book_cover" width="167" height="240">
-  </li>
+      <hr>
 
-  <li>
-    <%= @books[:hernandez][:title] %> escrito por: <%= @books[:hernandez][:author] %>. Precio: <%= @books[:hernandez][:price] %>. En librería: <%= @books[:hernandez][:library] %>
-  </li>
+      <div class="card mb-3 align-center" style="max-width: 800px;">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img src="<%= @books[:hernandez][:img_src] %>" alt="book_cover" class="img-card w-100 p-1">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title"><%= @books[:hernandez][:title] %></h5>
+              <p class="card-text">
+              <p>Author: <%= @books[:hernandez][:author] %></p>
+              <p>Price: <%= @books[:hernandez][:price] %></p>
+              <p>Library: <%= @books[:hernandez][:library] %></p>
+              </p>
+              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+          </div>
+        </div>
+      </div>
 
-  <li>
-    <img src="<%= @books[:hernandez][:img_src] %>" alt="book_cover" width="167" height="240">
-  </li>
+    </div>
+  </div>
 
-
-</ul>
+</div>
