@@ -41,7 +41,7 @@ class BooksController < ApplicationController
   end
 
   def search_hernandez(search_term)
-    url = "https://www.libreriahernandez.com/busquedaRapida?perPage=14&sortBy=stockAndTitle&value=#{search_term}&image.x=10&image.y=16"
+    url = "https://www.libreriahernandez.com/busquedaRapida?perPage=14&sortBy=stockAndTitle&value=#{search_term}&image.x=0&image.y=0"
     html_content = open(url)
     doc = Nokogiri::HTML(html_content)
     library = "Hernandez"
