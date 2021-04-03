@@ -15,8 +15,12 @@ class BooksController < ApplicationController
   end
   
   def create
-    @book = Book.new(params[:book])
+    @book = Book.find_or_created_by(params[:book])
+    UserBook.create(book:@book, user: @current)
   end
+
+
+  private
 
   def search_cuspide(search_term)
     url = "https://www.cuspide.com/resultados.aspx?c=#{search_term}&por=pal"
@@ -40,16 +44,24 @@ class BooksController < ApplicationController
     url = "https://www.bookdepository.com/es/search?searchTerm=#{search_term}&search=Find+book"
     html_content = open(url)
     doc = Nokogiri::HTML(html_content)
-    library = "Book Depository"
-    raise
-    price = doc.search('/html/body/div/div[6]/div/div/div[1]/div/div/div[2]/ul/li/div/div[2]/h5/a').text.strip
-    title = doc.search('/html/body/div/div[6]/div/div/div[1]/div/div/div[2]/ul/li/div/div[2]/h5/a').text.strip.split.map(&:capitalize).join(' ')
-    author = doc.search('/html/body/div/div[6]/div/div/div[1]/div/div/div[2]/ul/li/div/div[2]/div[1]').text.strip.split.map(&:capitalize).join(' ')
+    library = "Hernandez"
+    price = doc.search('/html/body/div[2]/div/div[2]/div[1]/div[2]/table/tbody/tr[2]/td[6]').text.strip
+    title = doc.search('/html/body/div[2]/div/div[2]/div[1]/div[2]/table/tbody/tr[2]/td[2]/a/span').text.strip.split.map(&:capitalize).join(' ')
+    author = doc.search('/html/body/div[2]/div/div[2]/div[1]/div[2]/table/tbody/tr[2]/td[1]/a/span').text.strip.split.map(&:capitalize).join(' ')
+    
+    first_url = doc.search('#tabla a')
+    first_url = first_url[5]["href"]
+    href = "https://www.libreriahernandez.com#{first_url}"
+    html_content = open(href)
+    doc = Nokogiri::HTML(html_content)
+    path = doc.at_xpath("/html/body/div[2]/div/div[2]/div[1]/div[1]/div[1]/img")["src"]
+    img_src = "https://#{path}"
+
     if price.empty? || title.empty? || author.empty?
       Book.new(title: "Book not found", description: "N/A", rating: "N/A", library: library, price: "N/A")
     else
       book = search_description_and_rating(title)
-      Book.new(title: title, author: author, description: book[:description], rating: book[:rating], library: library, price: price)
+      Book.new(title: title, author: author, description: book[:description], rating: book[:rating], library: library, price: price, img_src: img_src)
     end	
   end
 
