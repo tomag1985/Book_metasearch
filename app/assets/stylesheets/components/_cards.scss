@@ -1,0 +1,12 @@
+.card {
+  border-radius: 10px;
+  background-color: $light;
+  border-color: $violet;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
+
+.img-card {
+  height: 100%;
+  width: 200px;
+  object-fit: cover;
+}
