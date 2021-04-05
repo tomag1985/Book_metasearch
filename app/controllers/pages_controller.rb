@@ -75,7 +75,6 @@ class PagesController < ApplicationController
     covers_img = []
     urls = []
     hash = {}
-    test = []
   
     i = 1
     url = "http:"
@@ -101,16 +100,49 @@ class PagesController < ApplicationController
     hash
   end
 
+  def search_bookdep
+    url = "https://www.bookdepository.com/"
+    html_content = open(url)
+    doc = Nokogiri::HTML(html_content)
 
+    covers_img = []
+    urls = []
+    hash = {}
+
+    i = 1
+
+    while i < 8
+      covers_img << doc.at_css("body > div.page-slide > div.content-wrap > div.main-content.no-borders.home-page > div:nth-child(6) > div.block > div > div > div > div:nth-child(#{i}) > div.item-img > a > img")["data-lazy"]
+      i += 1
+    end
+
+    i = 1
+
+    while i < 8
+      href = doc.at_css("body > div.page-slide > div.content-wrap > div.main-content.no-borders.home-page > div:nth-child(6) > div.block > div > div > div > div:nth-child(#{i}) > div.item-img > a")["href"]
+      url = "https://www.bookdepository.com/#{href}?ref=grid-view"
+      urls << url
+      i += 1
+    end
+
+    i = 0
+    covers_img.each do |cover|
+      hash[cover] = urls[i]
+      i += 1
+    end
+    hash
+  end
 
   def suggestions
     yenny = search_yenny
     cuspide = search_cuspide
     hernandez = search_hernandez
+    bookdep = search_bookdep
     books = {}
     books[:yenny] = yenny
     books[:cuspide] = cuspide
     books[:hernandez] = hernandez
+    books[:bookdep] = bookdep
     books
   end
 end
