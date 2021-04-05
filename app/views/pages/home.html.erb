@@ -48,7 +48,18 @@
         </a>
       <% end %>
     </div>
-
   <hr>
+
+  <h4 class="my-4">Bestselling Books in Book Depository</h4>
+    <div class="sugerencias-hernandez d-flex justify-content-between" style="margin-top: 20px;">
+      <% @suggestions[:bookdep].each do |suggestion| %>
+        <a href="<%= suggestion[1] %>" target=”_blank”>
+          <img src="<%= suggestion[0] %>" alt="alt" width="145" height="200" class="zoom">
+        </a>
+      <% end %>
+    </div>
+  <hr>
+
+
 
 </div>
