@@ -3,6 +3,10 @@
     <div class="col-12">
     <h1 class="my-4">Results</h1>
 
+      <p>"<%= @books[:description][:description] %>". Rating: <%= @books[:description][:rating] %>. Powered by Google Apis</p>
+
+
+
       <div class="card mb-3" style="max-width: 800px;">
         <div class="row g-0">
           <div class="col-md-4">
@@ -15,9 +19,9 @@
               <p>Author: <%= @books[:cuspide][:author] %></p>
               <p>Price: <%= @books[:cuspide][:price] %></p>
               <p>Library: <%= @books[:cuspide][:library] %></p>
-              <%= @books[:cuspide][:href] %>
-              <a href="<% @books[:cuspide][:href] %>"> Comprar</a>
-              </p>
+              <p>Description: <%= @books[:cuspide][:description] %> </p>
+              <p><a href="<%= @books[:cuspide][:href] %>"> Buy on <%= @books[:cuspide][:library] %></a></p>
+              <p><a href="*">Add to wishlisth</a></p>
               <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
             </div>
           </div>
@@ -38,7 +42,9 @@
               <p>Author: <%= @books[:yenny][:author] %></p>
               <p>Price: <%= @books[:yenny][:price] %></p>
               <p>Library: <%= @books[:yenny][:library] %></p>
-              </p>
+              <p>Description: <%= @books[:yenny][:description] %> </p>
+              <p><a href="<%= @books[:yenny][:href] %>"> Buy on <%= @books[:yenny][:library] %></a></p>
+              <p><a href="*">Add to wishlisth</a></p>
               <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
             </div>
           </div>
@@ -59,7 +65,9 @@
               <p>Author: <%= @books[:hernandez][:author] %></p>
               <p>Price: <%= @books[:hernandez][:price] %></p>
               <p>Library: <%= @books[:hernandez][:library] %></p>
-              </p>
+              <p>Description: ESTA LIBRERIA NO DA DESCRIPCION DEL LIBRO :( </p>              
+              <p><a href="<%= @books[:hernandez][:href] %>"> Buy on <%= @books[:hernandez][:library] %></a></p>
+              <p><a href="*">Add to wishlisth</a></p>
               <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
             </div>
           </div>
@@ -79,19 +87,14 @@
               <p>Author: <%= @books[:bookdep][:author] %></p>
               <p>Price: <%= @books[:bookdep][:price] %></p>
               <p>Library: <%= @books[:bookdep][:library] %></p>
-              </p>
+              <p>Description: <%= @books[:bookdep][:description] %> </p>              
+              <p><a href="<%= @books[:bookdep][:href] %>"> Buy on <%= @books[:bookdep][:library] %></a></p>
+              <p><a href="*">Add to wishlisth</a></p>
               <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
             </div>
           </div>
         </div>
       </div>
-
-
-
-
-
-
-
     </div>
   </div>
 
