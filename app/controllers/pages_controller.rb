@@ -2,12 +2,14 @@ require 'open-uri'
 require 'nokogiri'
 
 class PagesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [ :home ]
+  skip_before_action :authenticate_user!, only: [ :home, :about ]
 
   def home
     @books = Book.name
-    @suggestions = suggestions
-    
+    @suggestions = suggestions  
+  end
+
+  def about
   end
 
 

@@ -16,7 +16,7 @@
 <div class="container">
   <div class="row">
     <div class="col-12">
-    <h4 class="my-4">Top searching at Yenny:</h4>
+    <h4 class="my-4">Most searched at Yenny:</h4>
       <div class="sugerencias-yenny d-flex justify-content-between" style="margin-top: 20px;">
         <% @suggestions[:yenny].each do |suggestion| %>
           <a href="<%= suggestion[1]["href"] %>" target=”_blank”>
@@ -29,7 +29,7 @@
   
   <hr>
 
-  <h4 class="my-4">The bestsellers of the week at Cuspide:</h4>
+  <h4 class="my-4">Bestsellers of the week at Cuspide:</h4>
     <div class="sugerencias-cuspide d-flex justify-content-between" style="margin-top: 20px;">
       <% @suggestions[:cuspide].each do |suggestion| %>
         <a href="<%= suggestion[1] %>" target=”_blank”>
