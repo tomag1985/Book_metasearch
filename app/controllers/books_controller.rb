@@ -132,7 +132,7 @@ class BooksController < ApplicationController
       url = doc.at_css("body > div.page-slide > div.content-wrap > div.main-content.search-page > div.content-block > div > div > div > div > div:nth-child(1) > div.item-img > a")["href"]
       href = "https://www.bookdepository.com/#{url}"
       img_src = doc.at_css("body > div.page-slide > div.content-wrap > div.main-content.search-page > div.content-block > div > div > div > div > div:nth-child(1) > div.item-img > a > img")["data-lazy"]
-      
+
       html_content = open(href)
       doc = Nokogiri::HTML(html_content)
 
