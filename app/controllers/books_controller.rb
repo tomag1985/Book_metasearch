@@ -51,7 +51,7 @@ class BooksController < ApplicationController
       img_src = "https://www.mobileread.com/forums/attachment.php?attachmentid=111264&d=1378642555"
     end
       
-    if price.nil? || title.empty? || author.empty?
+    if price.nil? || title.nil? || author.nil?
       Book.new(title: "Book not found", description: "N/A", rating: "N/A", library: library, price: "N/A", img_src: "N/A", img_src: img_src)		
     else
       Book.new(title: title, author: author, library: library, price: price, img_src: img_src, href: href, description: description)
@@ -89,7 +89,7 @@ class BooksController < ApplicationController
       description = "N/A"
     end
 
-    if price.nil? || title.empty? || author.empty?
+    if price.nil? || title.nil? || author.nil?
       Book.new(title: "Book not found", description: "N/A", rating: "N/A", library: library, price: "N/A", img_src: img_src, description: description)
     else
       book = search_description_and_rating(title)
@@ -126,7 +126,7 @@ class BooksController < ApplicationController
 
     end
     
-    if price.nil? || title.empty? || author.empty?
+    if price.nil? || title.nil? || author.nil?
       Book.new(title:"Book not found", description: "N/A", rating: "N/A", library: library, price: "N/A", img_src:"N/A", img_src: img_src)
     else
       Book.new(title: title, author: author, library: library, price: price, img_src: img_src, href: href, description: description)
