@@ -28,3 +28,44 @@ body {
 .zoom:hover {
   transform: scale(1.1); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
 }
+
+
+
+/* ReadMore options */
+
+.box {
+  
+  input {
+    opacity: 0;
+    position: absolute;
+    pointer-events: none;
+  }
+  
+  p {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;  
+    overflow: hidden;
+  }
+  
+  input:focus ~ label {
+    outline: -webkit-focus-ring-color auto 5px;
+  }
+  
+  input:checked + p {
+    -webkit-line-clamp: unset;
+  }
+  
+  input:checked ~ label,
+  p:not(.truncated) ~ label{
+    display: inline;
+  }
+  
+}
+
+.jumbotron {
+  border-radius: 20px;
+  background-color: white;
+  margin-top: 20px;
+  padding: 30px;
+}
