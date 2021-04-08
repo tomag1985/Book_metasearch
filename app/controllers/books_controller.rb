@@ -240,6 +240,7 @@ class BooksController < ApplicationController
     books[:bookdep] = bookdep
     books[:meli] = meli
     books[:description] = description
+    books[:title] = title
     books
   end
 end

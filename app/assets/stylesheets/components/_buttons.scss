@@ -5,3 +5,13 @@
   border: none;
   padding: 9px 15px;
 }
+
+.read-more-btn {
+  text-decoration: none;
+  color: $violet;
+  font-size: 15px;
+}
+
+.read-more-btn:hover {
+  color: $light;
+}
