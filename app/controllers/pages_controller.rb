@@ -135,16 +135,50 @@ class PagesController < ApplicationController
     hash
   end
 
+  def search_meli
+    url = "https://libros.mercadolibre.com.ar/libros/"
+    html_content = open(url)
+    doc = Nokogiri::HTML(html_content)
+
+    covers_img = []
+    urls = []
+    hash = {}
+
+    i = 1
+
+    while i < 8
+      covers_img << doc.at_css("#root-app > div > div.ui-search-main.ui-search-main--exhibitor.ui-search-main--only-products > section > ol > li:nth-child(#{i}) > div > div > div.ui-search-result__image > a > div > div > div > div > div > img")["data-src"]
+      i += 1
+    end
+
+    i = 1
+
+    while i < 8
+      url = doc.at_css("#root-app > div > div.ui-search-main.ui-search-main--exhibitor.ui-search-main--only-products > section > ol > li:nth-child(#{i}) > div > div > div.ui-search-result__image > a")["href"]
+      urls << url
+      i += 1
+    end
+
+    i = 0
+    covers_img.each do |cover|
+      hash[cover] = urls[i]
+      i += 1
+    end
+    hash
+  end
+
   def suggestions
     yenny = search_yenny
     cuspide = search_cuspide
     hernandez = search_hernandez
     bookdep = search_bookdep
+    meli = search_meli
     books = {}
     books[:yenny] = yenny
     books[:cuspide] = cuspide
     books[:hernandez] = hernandez
     books[:bookdep] = bookdep
+    books[:meli] = meli
     books
   end
 end

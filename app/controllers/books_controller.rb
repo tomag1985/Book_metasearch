@@ -28,6 +28,12 @@ class BooksController < ApplicationController
     doc = Nokogiri::HTML(html_content)
     library = "Cuspide"
     price = doc.search('//*[@id="ctl00_ContentPlaceHolder1_resultadosItems_rptResultadosMosaico_ctl00_article_container"]/div[2]/div[2]/div').text.strip
+
+    if price != ""
+      price[0..2] = ""
+      price = price.gsub(".", "").strip!.to_i
+    end
+
     author = doc.search('//*[@id="ctl00_ContentPlaceHolder1_resultadosItems_rptResultadosMosaico_ctl00_rptAutores_ctl00_a_autor"]').text.strip
     
     if author != ""
@@ -45,7 +51,7 @@ class BooksController < ApplicationController
       img_src = "https://www.mobileread.com/forums/attachment.php?attachmentid=111264&d=1378642555"
     end
       
-    if price.empty? || title.empty? || author.empty?
+    if price.nil? || title.nil? || author.nil?
       Book.new(title: "Book not found", description: "N/A", rating: "N/A", library: library, price: "N/A", img_src: "N/A", img_src: img_src)		
     else
       Book.new(title: title, author: author, library: library, price: price, img_src: img_src, href: href, description: description)
@@ -60,6 +66,12 @@ class BooksController < ApplicationController
     doc = Nokogiri::HTML(html_content)
     library = "Hernandez"
     price = doc.search('/html/body/div[2]/div/div[2]/div[1]/div[2]/table/tbody/tr[2]/td[6]').text.strip
+
+    if price != ""
+      price[0] = ""
+      price = price.strip.to_i
+    end
+
     title = doc.search('/html/body/div[2]/div/div[2]/div[1]/div[2]/table/tbody/tr[2]/td[2]/a/span').text.strip.split.map(&:capitalize).join(' ')
     author = doc.search('/html/body/div[2]/div/div[2]/div[1]/div[2]/table/tbody/tr[2]/td[1]/a/span').text.strip.split.map(&:capitalize).join(' ')
     
@@ -71,13 +83,13 @@ class BooksController < ApplicationController
       doc = Nokogiri::HTML(html_content)
       path = doc.at_xpath("/html/body/div[2]/div/div[2]/div[1]/div[1]/div[1]/img")["src"]
       img_src = "https://#{path}"
-      description = "Description not provided by library"
+      description = "description not provided by library"
     else
       img_src = "https://www.mobileread.com/forums/attachment.php?attachmentid=111264&d=1378642555"
       description = "N/A"
     end
 
-    if price.empty? || title.empty? || author.empty?
+    if price.nil? || title.nil? || author.nil?
       Book.new(title: "Book not found", description: "N/A", rating: "N/A", library: library, price: "N/A", img_src: img_src, description: description)
     else
       book = search_description_and_rating(title)
@@ -91,6 +103,12 @@ class BooksController < ApplicationController
     doc = Nokogiri::HTML(html_content)
     library = "Yenny"
     price = doc.search('/html/body/div/div[6]/div/div/div[1]/div/div/div[2]/ul/li[1]/div/div[2]/div[2]/span/span').text.strip
+
+    if price != ""
+      price[0] = ""
+      price = price.gsub(".", "").strip.to_i
+    end
+    
     author = doc.search('/html/body/div/div[6]/div/div/div[1]/div/div/div[2]/ul/li[1]/div/div[2]/div[1]').text.strip.split.map(&:capitalize).join(' ')
 
     if author != ""
@@ -108,7 +126,7 @@ class BooksController < ApplicationController
 
     end
     
-    if price.empty? || title.empty? || author.empty?
+    if price.nil? || title.nil? || author.nil?
       Book.new(title:"Book not found", description: "N/A", rating: "N/A", library: library, price: "N/A", img_src:"N/A", img_src: img_src)
     else
       Book.new(title: title, author: author, library: library, price: price, img_src: img_src, href: href, description: description)
@@ -128,6 +146,12 @@ class BooksController < ApplicationController
     else
       title = doc.at_css("body > div.page-slide > div.content-wrap > div.main-content.search-page > div.content-block > div > div > div > div > div:nth-child(1) > div.item-info > h3 > a").inner_text.strip
       price = doc.at_css("body > div.page-slide > div.content-wrap > div.main-content.search-page > div.content-block > div > div > div > div > div:nth-child(1) > div.item-info > div.price-wrap > p").inner_text.strip
+
+      if price != ""
+        price[0..3] = ""
+        price = price.gsub(".", "").strip.to_i
+      end
+
       author = doc.at_css("body > div.page-slide > div.content-wrap > div.main-content.search-page > div.content-block > div > div > div > div > div:nth-child(1) > div.item-info > p.author > span > a > span").inner_text.strip
       url = doc.at_css("body > div.page-slide > div.content-wrap > div.main-content.search-page > div.content-block > div > div > div > div > div:nth-child(1) > div.item-img > a")["href"]
       href = "https://www.bookdepository.com/#{url}"
@@ -136,14 +160,53 @@ class BooksController < ApplicationController
       html_content = open(href)
       doc = Nokogiri::HTML(html_content)
 
-      description = doc.at_css("body > div.page-slide > div.content-wrap > div > div > div.item-wrap > div.item-description > div").inner_text.split().join(" ").delete_suffix!(' show more')
+      description = doc.at_css("body > div.page-slide > div.content-wrap > div > div > div.item-wrap > div.item-description > div")
+
+      if description != nil
+        description = doc.at_css("body > div.page-slide > div.content-wrap > div > div > div.item-wrap > div.item-description > div").inner_text.split().join(" ").delete_suffix!(' show more')
+      else
+        description = "description not provided by library"
+      end
     end
 
     if price.nil? || title.nil? || author.nil?
       Book.new(title:"Book not found", description: "N/A", rating: "N/A", library: library, price: "N/A", img_src: img_src)		
     else
       Book.new(title: title, author: author, library: library, price: price, img_src: img_src, href: href, description: description)
-    end    
+    end
+  end
+
+  def search_meli(search_term)
+    search_term = search_term.gsub(" ", "-")
+    url = "https://libros.mercadolibre.com.ar/libros/#{search_term}"
+    html_content = open(url)
+    doc = Nokogiri::HTML(html_content)
+    library = "Mercado Libre"
+    
+    title = doc.at_css("#root-app > div > div.ui-search-main.ui-search-main--exhibitor.ui-search-main--only-products > section > ol > li:nth-child(1) > div > div > div.ui-search-result__content-wrapper > div.ui-search-item__group.ui-search-item__group--title > a.ui-search-item__group__element.ui-search-link > h2").inner_text
+
+
+    if title.nil?
+      img_src = "https://www.mobileread.com/forums/attachment.php?attachmentid=111264&d=1378642555"
+    else
+      price = doc.at_css("#root-app > div > div.ui-search-main.ui-search-main--exhibitor.ui-search-main--only-products > section > ol > li:nth-child(1) > div > div > div.ui-search-result__content-wrapper > div.ui-search-result__content-columns > div.ui-search-result__content-column.ui-search-result__content-column--left > div.ui-search-item__group.ui-search-item__group--price > div > div > span.price-tag.ui-search-price__part > span.price-tag-fraction").inner_text
+      price = price.gsub(".", "")
+      img_src = doc.at_css("#root-app > div > div.ui-search-main.ui-search-main--exhibitor.ui-search-main--only-products > section > ol > li:nth-child(1) > div > div > div.ui-search-result__image > a > div > div > div > div > div > img")["data-src"]
+      href = doc.at_css("#root-app > div > div.ui-search-main.ui-search-main--exhibitor.ui-search-main--only-products > section > ol > li:nth-child(1) > div > div > div.ui-search-result__image > a")["href"]
+
+      html_content = open(href)
+      doc = Nokogiri::HTML(html_content)
+      
+      author = doc.at_css("#root-app > div > div.ui-pdp-container.ui-pdp-container--pdp > div > div.ui-pdp-container__col.col-2.ui-pdp-container--column-left.pb-40 > div.ui-pdp-container__col.col-1.ui-vip-core-container--content-left > div.ui-pdp-container__row.ui-pdp-container__row--technical-specifications > div > div.ui-pdp-specs__table > table > tbody > tr:nth-child(2) > td > span").inner_text.strip
+
+      description = doc.at_css("#root-app > div > div.ui-pdp-container.ui-pdp-container--pdp > div > div.ui-pdp-container__col.col-2.ui-pdp-container--column-left.pb-40 > div.ui-pdp-container__col.col-1.ui-vip-core-container--content-left > div.ui-pdp-container__row.ui-pdp-container__row--description > div > p").inner_text.truncate(500)
+    end
+
+    if price.nil? || title.nil? || author.nil?
+      Book.new(title:"Book not found", description: "N/A", rating: "N/A", library: library, price: "N/A", img_src: img_src)		
+    else
+      Book.new(title: title, author: author, library: library, price: price, img_src: img_src, href: href, description: description)
+    end
   end
 
   def search_description_and_rating(title)
@@ -168,12 +231,14 @@ class BooksController < ApplicationController
     hernandez = search_hernandez(title)
     yenny = search_yenny(title)
     bookdep = search_bookdep(title)
+    meli = search_meli(title)
     description = search_description_and_rating(title)
     books = {}
     books[:cuspide] = cuspide
     books[:hernandez] = hernandez
     books[:yenny] = yenny
     books[:bookdep] = bookdep
+    books[:meli] = meli
     books[:description] = description
     books
   end

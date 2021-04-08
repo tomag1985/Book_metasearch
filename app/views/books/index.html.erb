@@ -17,12 +17,12 @@
               <h5 class="card-title"><%= @books[:cuspide][:title] %></h5>
               <p class="card-text">
               <p>Author: <%= @books[:cuspide][:author] %></p>
-              <p>Price: <%= @books[:cuspide][:price] %></p>
+              <p>Price: $<%= @books[:cuspide][:price] %></p>
               <p>Library: <%= @books[:cuspide][:library] %></p>
               <p>Description: <%= @books[:cuspide][:description] %> </p>
               <% if @books[:cuspide][:href] != nil %>
                 <p><a href="<%= @books[:cuspide][:href] %>"> Buy on <%= @books[:cuspide][:library] %></a></p>
-                <p><a href="*">Add to wishlisth</a></p>                
+                <p><a href="*">Add to wishlist</a></p>                
               <% end %>
               <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
             </div>
@@ -42,12 +42,12 @@
               <h5 class="card-title"><%= @books[:yenny][:title] %></h5>
               <p class="card-text">
               <p>Author: <%= @books[:yenny][:author] %></p>
-              <p>Price: <%= @books[:yenny][:price] %></p>
+              <p>Price: $<%= @books[:yenny][:price] %></p>
               <p>Library: <%= @books[:yenny][:library] %></p>
               <p>Description: <%= @books[:yenny][:description] %> </p>
               <% if @books[:yenny][:href] != nil %>
-                <p><a href="<%= @books[:yenny][:href] %>"> Buy on <%= @books[:yenny][:library] %></a></p>
-                <p><a href="*">Add to wishlisth</a></p>
+                <p><a href="<%= @books[:yenny][:href] %>" target="_blank"> Buy on <%= @books[:yenny][:library] %></a></p>
+                <p><a href="*">Add to wishlist</a></p>
               <% end %>
               <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
             </div>
@@ -67,12 +67,12 @@
               <h5 class="card-title"><%= @books[:hernandez][:title] %></h5>
               <p class="card-text">
               <p>Author: <%= @books[:hernandez][:author] %></p>
-              <p>Price: <%= @books[:hernandez][:price] %></p>
+              <p>Price: $<%= @books[:hernandez][:price] %></p>
               <p>Library: <%= @books[:hernandez][:library] %></p>
               <p>Description: <%= @books[:hernandez][:description] %> </p>
               <% if @books[:hernandez][:href] != nil %>
-                <p><a href="<%= @books[:hernandez][:href] %>"> Buy on <%= @books[:hernandez][:library] %></a></p>
-                <p><a href="*">Add to wishlisth</a></p>
+                <p><a href="<%= @books[:hernandez][:href] %>" target="_blank"> Buy on <%= @books[:hernandez][:library] %></a></p>
+                <p><a href="*">Add to wishlist</a></p>
               <% end %>
               <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
             </div>
@@ -80,6 +80,28 @@
         </div>
       </div>
 
+      <div class="card mb-3 align-center" style="max-width: 800px;">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img src="<%= @books[:meli][:img_src] %>" alt="book_cover" class="img-card w-100 p-1">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title"><%= @books[:meli][:title] %></h5>
+              <p class="card-text">
+              <p>Author: <%= @books[:meli][:author] %></p>
+              <p>Price: $<%= @books[:meli][:price] %></p>
+              <p>Library: <%= @books[:meli][:library] %></p>
+              <p>Description: <%= @books[:meli][:description] %> </p>
+              <% if @books[:meli][:href] != nil %>
+                <p><a href="<%= @books[:meli][:href] %>" target="_blank"> Buy on <%= @books[:meli][:library] %></a></p>
+                <p><a href="*">Add to wishlist</a></p>
+              <% end %>
+              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+          </div>
+        </div>
+      </div>
 
       <div class="card mb-3 align-center" style="max-width: 800px;">
         <div class="row g-0">
@@ -91,11 +113,11 @@
               <h5 class="card-title"><%= @books[:bookdep][:title] %></h5>
               <p class="card-text">
               <p>Author: <%= @books[:bookdep][:author] %></p>
-              <p>Price: <%= @books[:bookdep][:price] %></p>
+              <p>Price: $<%= @books[:bookdep][:price] %></p>
               <p>Library: <%= @books[:bookdep][:library] %></p>
               <p>Description: <%= @books[:bookdep][:description] %> </p>
               <% if @books[:bookdep][:href] != nil %>
-                <p><a href="<%= @books[:bookdep][:href] %>"> Buy on <%= @books[:bookdep][:library] %></a></p>
+                <p><a href="<%= @books[:bookdep][:href] %>" target="_blank"> Buy on <%= @books[:bookdep][:library] %></a></p>
                 <p><a href="*">Add to wishlisth</a></p>
               <% end %>
               <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
