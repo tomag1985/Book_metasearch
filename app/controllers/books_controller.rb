@@ -2,6 +2,7 @@ require 'json'
 require 'rest-client'
 require 'open-uri'
 require 'nokogiri'
+require 'webrick/httputils'
 
 class BooksController < ApplicationController
   skip_before_action :authenticate_user!, only: [ :index ]
@@ -92,8 +93,7 @@ class BooksController < ApplicationController
     if price.nil? || title.nil? || author.nil?
       Book.new(title: "Book not found", description: "N/A", rating: "N/A", library: library, price: "N/A", img_src: img_src, description: description)
     else
-      book = search_description_and_rating(title)
-      Book.new(title: title, author: author, description: book[:description], rating: book[:rating], library: library, price: price, img_src: img_src, href: href, description: description)
+      Book.new(title: title, author: author, description: description, library: library, price: price, img_src: img_src, href: href)
     end	
   end
 
@@ -154,11 +154,17 @@ class BooksController < ApplicationController
 
       author = doc.at_css("body > div.page-slide > div.content-wrap > div.main-content.search-page > div.content-block > div > div > div > div > div:nth-child(1) > div.item-info > p.author > span > a > span").inner_text.strip
       url = doc.at_css("body > div.page-slide > div.content-wrap > div.main-content.search-page > div.content-block > div > div > div > div > div:nth-child(1) > div.item-img > a")["href"]
-      href = "https://www.bookdepository.com/#{url}"
       img_src = doc.at_css("body > div.page-slide > div.content-wrap > div.main-content.search-page > div.content-block > div > div > div > div > div:nth-child(1) > div.item-img > a > img")["data-lazy"]
-
-      html_content = open(href)
+      
+      url[0] = ''
+      first_part = url.split('/').first.parameterize
+      last_part = "?#{url.split('?').last}"
+      final_url = "/#{first_part}#{last_part}"
+      href = "https://www.bookdepository.com/#{url}"
+      html_content = WEBrick::HTTPUtils.escape(href)
       doc = Nokogiri::HTML(html_content)
+
+
 
       description = doc.at_css("body > div.page-slide > div.content-wrap > div > div > div.item-wrap > div.item-description > div")
 
@@ -210,6 +216,7 @@ class BooksController < ApplicationController
   end
 
   def search_description_and_rating(title)
+    title = title.gsub("ñ", "n")
     url = "https://www.googleapis.com/books/v1/volumes?q=#{title}"
     response = RestClient.get url
     result = JSON.parse response.to_str
@@ -227,6 +234,7 @@ class BooksController < ApplicationController
   end
 
   def search_online(title)
+    title = title.parameterize
     cuspide = search_cuspide(title)
     hernandez = search_hernandez(title)
     yenny = search_yenny(title)
