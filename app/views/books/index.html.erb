@@ -3,6 +3,10 @@
     <div class="col-12">
     <% if @books[:description][:rating] || @books[:description][:description] != nil %>
       <div class="jumbotron">
+        <div class="mt-3 mb-2">
+          <i class="fas fa-arrow-left"> </i>
+          <%= link_to " back to search", root_path %>
+        </div>
         <h3 class="display-6">Great choice to read "<%= @books[:title].capitalize %>"</h3>
         <p class="lead font-italic">Brief description of your selection, Powered by Google Apis.</p>
         <hr class="my-4">
@@ -15,9 +19,11 @@
       </div>
       <% else %>
         <div class="mt-3">
-          <%= link_to "Back to search", root_path %>
+          <i class="fas fa-arrow-left"> </i>
+          <%= link_to " back to search", root_path %>
         </div>
     <% end %>
+
 
     <h3 class="my-4">Where you can find this amazing book:</h3>
       <div class="card mb-3" style="max-width: 800px;">
