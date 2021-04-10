@@ -150,7 +150,12 @@ class BooksController < ApplicationController
       title = doc.at_css("body > div.page-slide > div.content-wrap > div.main-content.search-page > div.content-block > div > div > div > div > div:nth-child(1) > div.item-info > h3 > a").inner_text.strip
      
 
-      author = doc.at_css("body > div.page-slide > div.content-wrap > div.main-content.search-page > div.content-block > div > div > div > div > div:nth-child(1) > div.item-info > p.author > span > a > span").inner_text.strip
+      author = doc.at_css("body > div.page-slide > div.content-wrap > div.main-content.search-page > div.content-block > div > div > div > div > div:nth-child(1) > div.item-info > p.author > span > a > span")
+
+      if author != nil
+        author = author.inner_text.strip
+      end
+
       url = doc.at_css("body > div.page-slide > div.content-wrap > div.main-content.search-page > div.content-block > div > div > div > div > div:nth-child(1) > div.item-img > a")["href"]
       img_src = doc.at_css("body > div.page-slide > div.content-wrap > div.main-content.search-page > div.content-block > div > div > div > div > div:nth-child(1) > div.item-img > a > img")["data-lazy"]
       
@@ -178,7 +183,7 @@ class BooksController < ApplicationController
       end
     end
 
-    if price.nil? || title.nil? || author.nil?
+    if price.nil? && title.nil? && author.nil?
       Book.new(title:"Book not found", author: "N/A", description: "N/A", rating: "N/A", library: library, price: "N/A", img_src: img_src)		
     else
       Book.new(title: title, author: author, library: library, price: price, img_src: img_src, href: href, description: description)

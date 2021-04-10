@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row align-center">
     <div class="col-12">
-    <% if @books[:description][:description] != "N/A" %>
+    <% if @books[:description][:description] != "N/A" && @books[:description][:description] != nil %>
       <div class="jumbotron">
         <div class="mt-3 mb-2">
           <i class="fas fa-arrow-left"> </i>
@@ -14,7 +14,9 @@
             <h6><i class="fas fa-star"></i> <%= @books[:description][:rating] %></h6>
             <input type="checkbox" id="expanded">
             <p>"<%= @books[:description][:description] %>".</p>
-            <label for="expanded" role="button" class="read-more-btn">Read More</label>
+            <% if @books[:description][:description].length > 424 %>
+              <label for="expanded" role="button" class="read-more-btn">Read More</label>
+            <% end %>
           </div>
       </div>
       <% else %>
