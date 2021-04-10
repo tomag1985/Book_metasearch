@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row align-center">
     <div class="col-12">
-    <% if @books[:description][:rating] || @books[:description][:description] != nil %>
+    <% if @books[:description][:description] != "N/A" %>
       <div class="jumbotron">
         <h3 class="display-6">Great choice to read "<%= @books[:title].capitalize %>"</h3>
         <p class="lead font-italic">Brief description of your selection, Powered by Google Apis.</p>
@@ -34,7 +34,7 @@
               <p>Library: <%= @books[:cuspide][:library] %></p>
               <p>Description: <%= @books[:cuspide][:description].truncate(140) %> </p>
               <% if @books[:cuspide][:href] != nil %>
-                <p><a href="<%= @books[:cuspide][:href] %>"> Buy on <%= @books[:cuspide][:library] %></a></p>
+                <p><a href="<%= @books[:cuspide][:href] %>" target="_blank"> Buy on <%= @books[:cuspide][:library] %></a></p>
                 <p><a href="*">Add to wishlist</a></p>                
               <% end %>
               <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
