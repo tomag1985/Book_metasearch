@@ -14,10 +14,10 @@
 </div>
 
 <div class="container">
-  <div class="row">
-    <div class="col-12">
-    <h4 class="my-4">Most searched at Yenny:</h4>
-      <div class="sugerencias-yenny d-flex justify-content-between" style="margin-top: 20px;">
+  <div class="row justify-content-center">
+    <div class="col-md-6 col-lg-12">
+      <h4 class="my-4">Most searched at Yenny:</h4>
+      <div class="sugerencias-yenny fotos-libros" style="margin-top: 20px;">
         <% @suggestions[:yenny].each do |suggestion| %>
           <a href="<%= suggestion[1]["href"] %>" target=”_blank”>
             <img src="<%= suggestion[0]["src"] %>" alt="alt" width="145" height="200" class="zoom">
@@ -28,48 +28,63 @@
   </div>
   
   <hr>
-
-  <h4 class="my-4">Bestsellers of the week at Cuspide:</h4>
-    <div class="sugerencias-cuspide d-flex justify-content-between" style="margin-top: 20px;">
-      <% @suggestions[:cuspide].each do |suggestion| %>
-        <a href="<%= suggestion[1] %>" target=”_blank”>
-          <img src="<%= suggestion[0] %>" alt="alt" width="145" height="200" class="zoom">
-        </a>
-      <% end %>
+  
+  <div class="row">
+    <div class="col-md-6 col-lg-12">
+      <h4 class="my-4">Recomended by Librería Hernández:</h4>
+      <div class="sugerencias-hernandez fotos-libros" style="margin-top: 20px;">
+        <% @suggestions[:hernandez].each do |suggestion| %>
+          <a href="<%= suggestion[1] %>" target=”_blank”>
+            <img src="<%= suggestion[0] %>" alt="alt" width="145" height="200" class="zoom">
+          </a>
+        <% end %>
+      </div>
     </div>
+  </div>
 
   <hr>
 
-  <h4 class="my-4">Recomended by Librería Hernández:</h4>
-    <div class="sugerencias-hernandez d-flex justify-content-between" style="margin-top: 20px;">
-      <% @suggestions[:hernandez].each do |suggestion| %>
-        <a href="<%= suggestion[1] %>" target=”_blank”>
-          <img src="<%= suggestion[0] %>" alt="alt" width="145" height="200" class="zoom">
-        </a>
-      <% end %>
+  <div class="row">
+    <div class="col-md-6 col-lg-12">
+      <h4 class="my-4">Bestselling Books in Book Depository</h4>
+      <div class="sugerencias-hernandez fotos-libros" style="margin-top: 20px;">
+        <% @suggestions[:bookdep].each do |suggestion| %>
+          <a href="<%= suggestion[1] %>" target=”_blank”>
+            <img src="<%= suggestion[0] %>" alt="alt" width="145" height="200" class="zoom">
+          </a>
+        <% end %>
+      </div>
     </div>
+  </div>
+
   <hr>
 
-  <h4 class="my-4">Bestselling Books in Book Depository</h4>
-    <div class="sugerencias-hernandez d-flex justify-content-between" style="margin-top: 20px;">
-      <% @suggestions[:bookdep].each do |suggestion| %>
-        <a href="<%= suggestion[1] %>" target=”_blank”>
-          <img src="<%= suggestion[0] %>" alt="alt" width="145" height="200" class="zoom">
-        </a>
-      <% end %>
+  <div class="row">
+    <div class="col-md-6 col-lg-12">
+      <h4 class="my-4">Bestselling Books in Mercado Libre</h4>
+      <div class="sugerencias-hernandez fotos-libros" style="margin-top: 20px;">
+        <% @suggestions[:meli].each do |suggestion| %>
+          <a href="<%= suggestion[1] %>" target=”_blank”>
+            <img src="<%= suggestion[0] %>" alt="alt" width="145" height="200" class="zoom">
+          </a>
+        <% end %>
+      </div>
     </div>
+  </div>
+
   <hr>
-
-
-  <h4 class="my-4">Bestselling Books in Mercado Libre</h4>
-    <div class="sugerencias-hernandez d-flex justify-content-between" style="margin-top: 20px;">
-      <% @suggestions[:meli].each do |suggestion| %>
-        <a href="<%= suggestion[1] %>" target=”_blank”>
-          <img src="<%= suggestion[0] %>" alt="alt" width="145" height="200" class="zoom">
-        </a>
-      <% end %>
+  
+  <div class="row">
+    <div class="col-md-6 col-lg-12">
+      <h4 class="my-4">Bestsellers of the week at Cuspide:</h4>
+      <div class="sugerencias-cuspide fotos-libros" style="margin-top: 20px;">
+        <% @suggestions[:cuspide].each do |suggestion| %>
+          <a href="<%= suggestion[1] %>" target=”_blank”>
+            <img src="<%= suggestion[0] %>" alt="alt" width="145" height="200" class="zoom">
+          </a>
+        <% end %>
+      </div>
     </div>
-  <hr>
-
-
+  </div>
 </div>
+
