@@ -4,12 +4,28 @@
   background-color: $light;
   border-color: $violet;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  flex-direction: row;
+  
 }
 
 .img-card {
-  height: 100%;
-  width: 200px;
-  object-fit: cover;
+  width: 12rem;
+  object-fit: contain;
+  text-align: center;
+}
+
+.price-item {
+  position: absolute;
+  top: 15px;
+  left: 600px;
+  font-size: 20px;
+  font-weight: bold;
+  background-color: $violet;
+  color: $light;
+  border: 2px;
+  border: solid 2px;
+  border-radius: 5px;
+  padding: 3px 7px;
 }
 
 /* about us cards */
@@ -60,7 +76,6 @@
   border-radius: 10px;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
 }
-
 
 .cards {
   display: grid;

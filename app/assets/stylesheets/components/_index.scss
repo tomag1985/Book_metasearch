@@ -29,6 +29,9 @@ body {
   transform: scale(1.1); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
 }
 
+a:hover {
+  text-decoration: none;
+}
 
 
 /* ReadMore options */
@@ -74,6 +77,15 @@ body {
   color: $violet;
 }
 
+.fa-heart {
+  color: $violet;
+  padding-left: 5px;
+  font-size: 18px;
+  .fa-heart:hover {
+    color: #749C75;
+  }
+}
+
 .lead {
   font-size: 15px;
 }
@@ -111,3 +123,4 @@ body {
     justify-content: space-between;
   }
 }
+
