@@ -3,9 +3,7 @@
   border-radius: 10px;
   background-color: $light;
   border-color: $violet;
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
-  flex-direction: row;
-  
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);  
 }
 
 .img-card {
@@ -115,5 +113,29 @@
 @media (min-width: 1200px) {
   .cards {
     grid-template-columns: 1fr 1fr 1fr;
+  }
+  .price-item {
+    position: absolute;
+    top: 15px;
+    left: 600px;
+    font-size: 20px;
+    font-weight: bold;
+    background-color: $violet;
+    color: $light;
+    border: 2px;
+    border: solid 2px;
+    border-radius: 5px;
+    padding: 3px 7px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .price-item {
+  position: static;
+  background-color: $light;
+  color: $violet;
+  border: solid $light 2px;
+  margin-bottom: 2px;
+  padding: 0;
   }
 }
