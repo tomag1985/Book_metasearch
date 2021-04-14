@@ -55,7 +55,7 @@ class BooksController < ApplicationController
       end
         
       if price.nil? || title.nil? || author.nil?
-        Book.new(title: "Book not found", author: "N/A", description: "N/A", rating: "N/A", library: library, price: "N/A", img_src: "N/A", img_src: img_src)		
+        nil		
       else
         Book.new(title: title, author: author, library: library, price: price, img_src: img_src, href: href, description: description)
       end
@@ -63,7 +63,6 @@ class BooksController < ApplicationController
       nil
     end
   end
-
 
   def search_hernandez(search_term)
     url = "https://www.libreriahernandez.com/busquedaRapida?perPage=14&sortBy=stockAndTitle&value=#{search_term}&image.x=0&image.y=0"
@@ -97,7 +96,7 @@ class BooksController < ApplicationController
       end
 
       if price.nil? || title.nil? || author.nil?
-        Book.new(title: "Book not found", author: "N/A", description: "N/A", rating: "N/A", library: library, price: "N/A", img_src: img_src, description: description)
+        nil
       else
         Book.new(title: title, author: author, description: description, library: library, price: price, img_src: img_src, href: href)
       end	
@@ -105,9 +104,6 @@ class BooksController < ApplicationController
       nil
     end
   end
-
-
-
 
   def search_yenny(search_term)
     url = "https://www.tematika.com/catalogsearch/result/?q=#{search_term}"
@@ -141,7 +137,7 @@ class BooksController < ApplicationController
       end
       
       if price.nil? || title.nil? || author.nil?
-        Book.new(title:"Book not found", author: "N/A", description: "N/A", rating: "N/A", library: library, price: "N/A", img_src:"N/A", img_src: img_src)
+        nil
       else
         Book.new(title: title, author: author, library: library, price: price, img_src: img_src, href: href, description: description)
       end
@@ -152,7 +148,7 @@ class BooksController < ApplicationController
 
   def search_bookdep(search_term)
     url = "https://www.bookdepository.com/search?searchTerm=#{search_term}&search=Find+book"
-    begin
+    
       html_content = open(url)
       doc = Nokogiri::HTML(html_content)
       library = "Bookdepository"
@@ -174,7 +170,14 @@ class BooksController < ApplicationController
         url = doc.at_css("body > div.page-slide > div.content-wrap > div.main-content.search-page > div.content-block > div > div > div > div > div:nth-child(1) > div.item-img > a")["href"]
         img_src = doc.at_css("body > div.page-slide > div.content-wrap > div.main-content.search-page > div.content-block > div > div > div > div > div:nth-child(1) > div.item-img > a > img")["data-lazy"]
         
-        
+        price = doc.at_css("body > div.page-slide > div.content-wrap > div.main-content.search-page > div.content-block > div > div > div > div > div:nth-child(1) > div.item-info > div.price-wrap > p").inner_text.strip
+
+
+        if price != ""
+          price[0..3] = ""
+          price[-3..-1] = ""
+          price = price.gsub(".", "").strip.to_i
+        end
         
         url[0] = ''
         first_part = url.split('/').first.parameterize
@@ -184,13 +187,6 @@ class BooksController < ApplicationController
         html_content = open(href)
         doc = Nokogiri::HTML(html_content)
         
-        price = doc.at_css("body > div.page-slide > div.content-wrap > div > div > div.item-wrap > div.item-block > div.item-tools > div > div.price-info-wrap > div > div.price.item-price-wrap.hidden-xs.hidden-sm > span.sale-price").inner_text.strip
-        
-        if price != ""
-          price[0..3] = ""
-          price[-3..-1] = ""
-          price = price.gsub(".", "").strip.to_i
-        end
         
         description = doc.at_css("body > div.page-slide > div.content-wrap > div > div > div.item-wrap > div.item-description > div")
 
@@ -202,13 +198,11 @@ class BooksController < ApplicationController
       end
 
       if price.nil? && title.nil? && author.nil?
-        Book.new(title:"Book not found", author: "N/A", description: "N/A", rating: "N/A", library: library, price: "N/A", img_src: img_src)		
+        nil
       else
         Book.new(title: title, author: author, library: library, price: price, img_src: img_src, href: href, description: description)
       end
-    rescue
-      nil
-    end
+  
   end
 
   def search_meli(search_term)
@@ -239,7 +233,7 @@ class BooksController < ApplicationController
       end
 
       if price.nil? || title.nil? || author.nil?
-        Book.new(title:"Book not found", description: "N/A", rating: "N/A", library: library, price: "N/A", img_src: img_src)		
+        nil
       else
         Book.new(title: title, author: author, library: library, price: price, img_src: img_src, href: href, description: description)
       end
