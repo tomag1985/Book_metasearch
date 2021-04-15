@@ -44,3 +44,17 @@ const observer = new ResizeObserver(entries => {
 ps.forEach(p => {
   observer.observe(p);
 });
+
+
+
+var min = Infinity;
+
+const price = document.querySelectorAll('.price-item');
+
+price.forEach((element => {
+  if (parseInt(element.innerText) < min) {
+    min = parseInt(element.innerText);
+  }
+}));
+
+$( `p:contains(${min})` ).css( "text-decoration", "underline" );
