@@ -148,7 +148,7 @@ class BooksController < ApplicationController
 
   def search_bookdep(search_term)
     url = "https://www.bookdepository.com/search?searchTerm=#{search_term}&search=Find+book"
-    
+    begin
       html_content = open(url)
       doc = Nokogiri::HTML(html_content)
       library = "Bookdepository"
@@ -202,7 +202,9 @@ class BooksController < ApplicationController
       else
         Book.new(title: title, author: author, library: library, price: price, img_src: img_src, href: href, description: description)
       end
-  
+    rescue
+      nil
+    end
   end
 
   def search_meli(search_term)

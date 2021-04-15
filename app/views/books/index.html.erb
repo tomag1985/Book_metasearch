@@ -39,16 +39,17 @@
       <div class="col mb-4">
         <% if @books[:cuspide] != nil %>
           <div class="card mb-3">
-            <div class="row g-0" style="align-items: center">
+            <div class="row g-0" style="align-items: center" id="badge">
               <div class="col-lg-4 col-md-4 col-xs-6 text-center">
                 <img src="<%= @books[:cuspide][:img_src] %>" alt="book_cover" class="img-card p-1">
+                <span id="badge-new" class="badge badge-primary position-absolute text-white rounded" style="font-size:12px;display: none;">Lower price!</span>
               </div>
               <div class="col-lg-8 col-md-8 col-xs-6">
                 <div class="card-body">
                   <h5 class="card-title"><%= @books[:cuspide][:title] %></h5>
                   <p class="card-text">
                   <p>Author: <%= @books[:cuspide][:author] %></p>
-                  <p class="price-item"> $<%= @books[:cuspide][:price] %></p>
+                  <p class="price-item">$<%= @books[:cuspide][:price] %></p>
                   <p>Library: <%= @books[:cuspide][:library] %></p>
                   <p>Description: <%= @books[:cuspide][:description].truncate(140) %> </p>
                   <% if @books[:cuspide][:href] != nil %>
@@ -71,16 +72,17 @@
       <div class="col mb-4">
         <% if @books[:yenny] != nil %>
           <div class="card mb-3">
-            <div class="row g-0" style="align-items: center">
+            <div class="row g-0" style="align-items: center" id="badge">
               <div class="col-lg-4 col-md-4 col-xs-6 text-center">
                 <img src="<%= @books[:yenny][:img_src] %>" alt="book_cover" class="img-card p-1">
+                <span id="badge-new" class="badge badge-primary position-absolute text-white rounded" style="font-size:12px;display: none;">Lower price!</span>
               </div>
               <div class="col-lg-8 col-md-8 col-xs-6">
                 <div class="card-body">
                   <h5 class="card-title"><%= @books[:yenny][:title] %></h5>
                   <p class="card-text">
                   <p>Author: <%= @books[:yenny][:author] %></p>
-                  <p class="price-item"> $<%= @books[:yenny][:price] %></p>
+                  <p class="price-item">$<%= @books[:yenny][:price] %></p>
                   <p>Library: <%= @books[:yenny][:library] %></p>
                   <p>Description: <%= @books[:yenny][:description].truncate(140) %> </p>
                   <% if @books[:yenny][:href] != nil %>
@@ -103,16 +105,17 @@
       <div class="col mb-4">
         <% if @books[:hernandez] != nil %>
           <div class="card mb-3">
-            <div class="row g-0" style="align-items: center">
+            <div class="row g-0" style="align-items: center" id="badge">
               <div class="col-lg-4 col-md-4 col-xs-6 text-center">
                 <img src="<%= @books[:hernandez][:img_src] %>" alt="book_cover" class="img-card p-1">
+                <span id="badge-new" class="badge badge-primary position-absolute text-white rounded" style="font-size:12px;display: none;">Lower price!</span>
               </div>
               <div class="col-lg-8 col-md-8 col-xs-6">
                 <div class="card-body">
                   <h5 class="card-title"><%= @books[:hernandez][:title] %></h5>
                   <p class="card-text">
                   <p>Author: <%= @books[:hernandez][:author] %></p>
-                  <p class="price-item"> $<%= @books[:hernandez][:price] %></p>
+                  <p class="price-item">$<%= @books[:hernandez][:price] %></p>
                   <p>Library: <%= @books[:hernandez][:library] %></p>
                   <p>Description: <%= @books[:hernandez][:description].truncate(140) %> </p>
                   <% if @books[:hernandez][:href] != nil %>
@@ -135,16 +138,17 @@
       <div class="col mb-4">
         <% if @books[:meli] != nil %>
           <div class="card mb-3">
-            <div class="row g-0" style="align-items: center">
+            <div class="row g-0" style="align-items: center" id="badge">
               <div class="col-lg-4 col-md-4 col-xs-6 text-center">
                 <img src="<%= @books[:meli][:img_src] %>" alt="book_cover" class="img-card p-1">
+                <span id="badge-new" class="badge badge-primary position-absolute text-white rounded" style="font-size:12px;display: none;">Lower price!</span>
               </div>
               <div class="col-lg-8 col-md-8 col-xs-6">
                 <div class="card-body">
                   <h5 class="card-title"><%= @books[:meli][:title] %></h5>
                   <p class="card-text">
                   <p>Author: <%= @books[:meli][:author] %></p>
-                  <p class="price-item"> $<%= @books[:meli][:price] %></p>
+                  <p class="price-item">$<%= @books[:meli][:price] %></p>
                   <p>Library: <%= @books[:meli][:library] %></p>
                   <p>Description: <%= @books[:meli][:description].truncate(140) %> </p>
                   <% if @books[:meli][:href] != nil %>
@@ -167,16 +171,17 @@
       <div class="col mb-4">
         <% if @books[:bookdep] != nil %>
           <div class="card mb-3">
-            <div class="row g-0" style="align-items: center">
+            <div class="row g-0" style="align-items: center" id="badge">
               <div class="col-lg-4 col-md-4 col-xs-6 text-center">
                 <img src="<%= @books[:bookdep][:img_src] %>" alt="book_cover" class="img-card p-1">
+                <span id="badge-new" class="badge badge-primary position-absolute text-white rounded" style="font-size:12px;display: none;">Lower price!</span>
               </div>
               <div class="col-lg-8 col-md-8 col-xs-6">
                 <div class="card-body">
                   <h5 class="card-title"><%= @books[:bookdep][:title] %></h5>
                   <p class="card-text">
                   <p>Author: <%= @books[:bookdep][:author] %></p>
-                  <p class="price-item"> $<%= @books[:bookdep][:price] %></p>
+                  <p class="price-item">$<%= @books[:bookdep][:price] %></p>
                   <p>Library: <%= @books[:bookdep][:library] %></p>
                   <p>Description: <%= @books[:bookdep][:description].truncate(140) %> </p>
                   <% if @books[:bookdep][:href] != nil %>

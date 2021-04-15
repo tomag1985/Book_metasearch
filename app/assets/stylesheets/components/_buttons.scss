@@ -15,3 +15,10 @@
 .read-more-btn:hover {
   color: $light;
 }
+
+#badge-new {
+  font-size: 16px!important;
+  bottom: 10px;
+  transform: rotate(-6deg);
+  left: 134px;
+}
