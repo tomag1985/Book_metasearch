@@ -47,14 +47,34 @@ ps.forEach(p => {
 
 
 
-var min = Infinity;
+var min = document.querySelector('.price-item');
 
 const price = document.querySelectorAll('.price-item');
 
 price.forEach((element => {
-  if (parseInt(element.innerText) < min) {
-    min = parseInt(element.innerText);
+  if (parseInt(element.innerText.substring(1)) < parseInt(min.innerText.substring(1))) {
+    min = element;
   }
 }));
 
-$( `p:contains(${min})` ).css( "text-decoration", "underline" );
+min = min.innerText;
+
+for (const a of document.querySelectorAll(".price-item")) {
+  if (a.textContent.includes(min)) {
+    min = a.closest("#badge");
+  }
+}
+
+const el = min.firstChild;
+
+const sec = el.nextSibling;
+
+const third = sec.firstChild;
+
+const fourth = third.nextSibling;
+
+const fifth = fourth.nextSibling;
+
+const sixth = fifth.nextSibling;
+
+sixth.style.display = "block";
