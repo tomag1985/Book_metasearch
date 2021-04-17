@@ -22,6 +22,8 @@ class BooksController < ApplicationController
     @book.user = current_user
 
     @book.save!
+
+    redirect_to wishlist_path
   end
 
 
