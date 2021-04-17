@@ -30,9 +30,6 @@
     </div>
   </div>
 
-
-
-
   <h3 class="my-4">Where you can find this amazing book:</h3>
   <div class="cards-index">
     <div class="row row-cols-1">
@@ -58,7 +55,10 @@
                         <a href="<%= @books[:cuspide][:href] %>" target="_blank"> Buy on <%= @books[:cuspide][:library] %></a>
                       </div>
                       <div class="wish-item pl-5">
-                        <a href="*">Add to <i class="fas fa-heart"></i></a>
+                        <!-- <a href="*">Add to <i class="fas fa-heart"></i></a> -->
+                        <%= simple_form_for @books[:cuspide] do |f| %>
+                          <%=f.submit "Add to wishlist!", class: "btn btn-primary mt-2 textclass w-100" %>
+                        <% end %>                        
                       </div>            
                     </div>
                   <% end %>
