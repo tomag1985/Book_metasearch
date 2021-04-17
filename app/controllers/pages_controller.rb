@@ -13,7 +13,7 @@ class PagesController < ApplicationController
   end
 
   def wishlist
-    @books = Book.where(user: current_user)
+    @books = current_user.books
   end
 
 

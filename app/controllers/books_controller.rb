@@ -9,6 +9,7 @@ class BooksController < ApplicationController
 
   def index
     @books = search_online(params[:search_online])
+    @book = Book.new
   end
   
   def show
@@ -30,7 +31,7 @@ class BooksController < ApplicationController
   private
 
   def book_params
-    params.permit(:title, :author, :library, :price, :img_src, :href, :description, :user)
+    params.require(:book).permit(:title, :author, :library, :price, :img_src, :href, :description, :user)
   end
 
   def search_cuspide(search_term)
@@ -67,7 +68,23 @@ class BooksController < ApplicationController
       if price.nil? || title.nil? || author.nil?
         nil		
       else
-        Book.new(title: title, author: author, library: library, price: price, img_src: img_src, href: href, description: description)
+        book = Book.find_or_initialize_by(title: title, author: author, library: library, img_src: img_src, href: href, description: description)
+        
+        book.price = price
+        
+        if book.persisted?
+          book.save
+        end
+
+        # CREAR METODO CON ESTE ELSE Y LLAMARLO EN CADA UNO DE LOS METODOS DE LAS LIBRERIAS!!
+
+        # if book.new_record?
+        #  book.price = price
+        # else
+        #  book.update(price: price)
+        # end
+
+        book
       end
     rescue
       nil

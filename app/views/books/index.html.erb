@@ -49,16 +49,26 @@
                   <p class="price-item">$<%= @books[:cuspide][:price] %></p>
                   <p>Library: <%= @books[:cuspide][:library] %></p>
                   <p>Description: <%= @books[:cuspide][:description].truncate(140) %> </p>
-                  <% if @books[:cuspide][:href] != nil %>
+                  <% if @books[:cuspide][:href].present? %>
                     <div class="card-items d-flex">
                       <div class="buy-item">
                         <a href="<%= @books[:cuspide][:href] %>" target="_blank"> Buy on <%= @books[:cuspide][:library] %></a>
                       </div>
-                      <div class="wish-item pl-5">
-                        <!-- <a href="*">Add to <i class="fas fa-heart"></i></a> -->
-                        <%= simple_form_for @books[:cuspide] do |f| %>
-                          <%=f.submit "Add to wishlist!", class: "btn btn-primary mt-2 textclass w-100" %>
-                        <% end %>                        
+                      
+                      <% if @books[:cuspide].persisted? %>
+                        <div class="wish-item pl-5">
+                          <!-- <a href="*">Add to <i class="fas fa-heart"></i></a> -->
+                          <%= simple_form_for @book do |f| %>
+                            <%= f.input :title, :as => :hidden, :input_html => { :value => @books[:cuspide][:title] } %>
+                            <%= f.input :author, :as => :hidden, :input_html => { :value => @books[:cuspide][:author] } %>
+                            <%= f.input :price, :as => :hidden, :input_html => { :value => @books[:cuspide][:price] } %>
+                            <%= f.input :library, :as => :hidden, :input_html => { :value => @books[:cuspide][:library] } %>
+                            <%= f.input :description, :as => :hidden, :input_html => { :value => @books[:cuspide][:description] } %>
+                            <%= f.input :img_src, :as => :hidden, :input_html => { :value => @books[:cuspide][:img_src] } %>
+                            <%=f.submit "Add to wishlist!", class: "btn btn-primary mt-2 textclass w-100" %>
+                          <% end %>                        
+                      <% end %>
+                      
                       </div>            
                     </div>
                   <% end %>
