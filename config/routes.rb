@@ -5,5 +5,7 @@ Rails.application.routes.draw do
 
   get 'about', to: 'pages#about'
 
-  resources :books, only: [ :index, :show, :new ]
+  get 'wishlist', to: 'pages#wishlist'
+
+  resources :books, only: [ :index, :show, :new, :create ]
 end
