@@ -12,6 +12,10 @@ class PagesController < ApplicationController
   def about
   end
 
+  def wishlist
+    @books = Book.where(user: current_user)
+  end
+
 
   private
 
