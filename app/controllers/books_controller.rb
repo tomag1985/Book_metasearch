@@ -27,6 +27,10 @@ class BooksController < ApplicationController
 
   private
 
+  def book_params
+    params.permit(:title, :author, :library, :price, :img_src, :href, :description, :user)
+  end
+
   def search_cuspide(search_term)
     url = "https://www.cuspide.com/resultados.aspx?c=#{search_term}&por=pal"
     begin
