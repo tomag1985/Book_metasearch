@@ -68,6 +68,8 @@ class BooksController < ApplicationController
       if price.nil? || title.nil? || author.nil?
         nil		
       else
+        # CREAR METODO CON ESTE ELSE Y LLAMARLO EN CADA UNO DE LOS METODOS DE LAS LIBRERIAS!!
+
         book = Book.find_or_initialize_by(title: title, author: author, library: library, img_src: img_src, href: href, description: description)
         
         book.price = price
@@ -75,14 +77,6 @@ class BooksController < ApplicationController
         if book.persisted?
           book.save
         end
-
-        # CREAR METODO CON ESTE ELSE Y LLAMARLO EN CADA UNO DE LOS METODOS DE LAS LIBRERIAS!!
-
-        # if book.new_record?
-        #  book.price = price
-        # else
-        #  book.update(price: price)
-        # end
 
         book
       end
@@ -125,7 +119,15 @@ class BooksController < ApplicationController
       if price.nil? || title.nil? || author.nil?
         nil
       else
-        Book.new(title: title, author: author, description: description, library: library, price: price, img_src: img_src, href: href)
+        book = Book.find_or_initialize_by(title: title, author: author, library: library, img_src: img_src, href: href, description: description)
+        
+        book.price = price
+        
+        if book.persisted?
+          book.save
+        end
+
+        book
       end	
     rescue
       nil
@@ -166,7 +168,15 @@ class BooksController < ApplicationController
       if price.nil? || title.nil? || author.nil?
         nil
       else
-        Book.new(title: title, author: author, library: library, price: price, img_src: img_src, href: href, description: description)
+        book = Book.find_or_initialize_by(title: title, author: author, library: library, img_src: img_src, href: href, description: description)
+        
+        book.price = price
+        
+        if book.persisted?
+          book.save
+        end
+
+        book
       end
     rescue
       nil
@@ -237,7 +247,15 @@ class BooksController < ApplicationController
       if price.nil? && title.nil? && author.nil?
         nil
       else
-        Book.new(title: title, author: author, library: library, price: price, img_src: img_src, href: href, description: description)
+        book = Book.find_or_initialize_by(title: title, author: author, library: library, img_src: img_src, href: href, description: description)
+        
+        book.price = price
+        
+        if book.persisted?
+          book.save
+        end
+
+        book
       end
     rescue
       nil
@@ -274,7 +292,15 @@ class BooksController < ApplicationController
       if price.nil? || title.nil? || author.nil?
         nil
       else
-        Book.new(title: title, author: author, library: library, price: price, img_src: img_src, href: href, description: description)
+        book = Book.find_or_initialize_by(title: title, author: author, library: library, img_src: img_src, href: href, description: description)
+        
+        book.price = price
+        
+        if book.persisted?
+          book.save
+        end
+
+        book
       end
     rescue OpenURI::HTTPError => ex
       nil

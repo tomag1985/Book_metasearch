@@ -1,0 +1,40 @@
+<div class="container">
+  <% if @books.nil? %>
+    <h3 class="my-4">No books yet :(</h3>    
+  <% else %>
+    <h3 class="my-4">These are your books:</h3>
+    <div class="cards-index">
+      <div class="row row-cols-1">
+        <div class="col mb-4">
+          <% @books.each do |book| %>
+            <div class="card mb-3">
+              <div class="row g-0" style="align-items: center" id="badge">
+                <div class="col-lg-4 col-md-4 col-xs-6 text-center">
+                  <img src="<%= book[:img_src] %>" alt="book_cover" class="img-card p-1">
+                </div>
+                <div class="col-lg-8 col-md-8 col-xs-6">
+                  <div class="card-body">
+                    <h5 class="card-title"><%= book[:title] %></h5>
+                    <p class="card-text">
+                    <p>Author: <%= book[:author] %></p>
+                    <p class="price-item">$<%= book[:price] %></p>
+                    <p>Library: <%= book[:library] %></p>
+                    <p>Description: <%= book[:description].truncate(140) %> </p>
+                    <% if book[:href].present? %>
+                      <div class="card-items d-flex">
+                        <div class="buy-item">
+                          <a href="<%= book[:href] %>" target="_blank"> Buy on <%= book[:library] %></a>
+                        </div>
+                      </div>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
