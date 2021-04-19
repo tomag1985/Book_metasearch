@@ -199,11 +199,9 @@ class BooksController < ApplicationController
         
         price = doc.at_css("body > div.page-slide > div.content-wrap > div.main-content.search-page > div.content-block > div > div > div > div > div:nth-child(1) > div.item-info > div.price-wrap > p").inner_text.strip
 
-
         if price != ""
-          price[0..3] = ""
-          price[-3..-1] = ""
-          price = price.gsub(".", "").strip.to_i
+          price[0..2] = ""
+          price = price.gsub(".", ",").strip.to_i
         end
         
         url[0] = ''
@@ -215,18 +213,26 @@ class BooksController < ApplicationController
         doc = Nokogiri::HTML(html_content)
         
         
-        # description = doc.at_css("body > div.page-slide > div.content-wrap > div > div > div.item-wrap > div.item-description > div")
-
-        description = doc.at_css("body > div.page-slide > div.content-wrap > div > div > div.item-wrap > div.item-block > div.item-tools > div > div.price-info-wrap > div > div.price.item-price-wrap.hidden-xs.hidden-sm > span")
+        description = doc.at_css("body > div.page-slide > div.content-wrap > div > div > div.item-wrap > div.item-description > div")
 
         if description != nil
-          # description = doc.at_css("body > div.page-slide > div.content-wrap > div > div > div.item-wrap > div.item-description > div").inner_text.split().join(" ").delete_suffix!(' show more')
-          description = doc.at_css("body > div.page-slide > div.content-wrap > div > div > div.item-wrap > div.item-block > div.item-tools > div > div.price-info-wrap > div > div.price.item-price-wrap.hidden-xs.hidden-sm > span")
-
+          description = doc.at_css("body > div.page-slide > div.content-wrap > div > div > div.item-wrap > div.item-description > div").inner_text.split().join(" ").delete_suffix!(' show more')
         else
           description = "description not provided by library"
         end
       end
+
+      url = "https://dolaraldia.com/"
+      html_content = open(url)
+      doc = Nokogiri::HTML(html_content)
+
+      usd = doc.at_css("#content-area > div > div.et_pb_section.et_pb_section_0.et_pb_with_background.et_section_regular > div.et_pb_row.et_pb_row_0 > div.et_pb_column.et_pb_column_1_3.et_pb_column_0.et_pb_css_mix_blend_mode_passthrough > div.et_pb_module.et_pb_code.et_pb_code_1.et_pb_text_align_left > div > div > div > div:nth-child(2) > div:nth-child(2)").inner_text.strip
+
+      usd[0..1] = ""
+      usd = usd.to_i
+      usd = usd * 1.2
+      usd = usd.to_i
+      price = price * usd
 
       if price.nil? && title.nil? && author.nil?
         nil
