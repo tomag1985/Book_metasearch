@@ -215,10 +215,14 @@ class BooksController < ApplicationController
         doc = Nokogiri::HTML(html_content)
         
         
-        description = doc.at_css("body > div.page-slide > div.content-wrap > div > div > div.item-wrap > div.item-description > div")
+        # description = doc.at_css("body > div.page-slide > div.content-wrap > div > div > div.item-wrap > div.item-description > div")
+
+        description = doc.at_css("body > div.page-slide > div.content-wrap > div > div > div.item-wrap > div.item-block > div.item-tools > div > div.price-info-wrap > div > div.price.item-price-wrap.hidden-xs.hidden-sm > span")
 
         if description != nil
-          description = doc.at_css("body > div.page-slide > div.content-wrap > div > div > div.item-wrap > div.item-description > div").inner_text.split().join(" ").delete_suffix!(' show more')
+          # description = doc.at_css("body > div.page-slide > div.content-wrap > div > div > div.item-wrap > div.item-description > div").inner_text.split().join(" ").delete_suffix!(' show more')
+          description = doc.at_css("body > div.page-slide > div.content-wrap > div > div > div.item-wrap > div.item-block > div.item-tools > div > div.price-info-wrap > div > div.price.item-price-wrap.hidden-xs.hidden-sm > span")
+
         else
           description = "description not provided by library"
         end
