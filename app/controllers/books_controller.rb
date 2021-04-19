@@ -125,7 +125,13 @@ class BooksController < ApplicationController
       if price.nil? || title.nil? || author.nil?
         nil
       else
-        Book.new(title: title, author: author, description: description, library: library, price: price, img_src: img_src, href: href)
+        book = Book.find_or_initialize_by(title: title, author: author, library: library, img_src: img_src, href: href, description: description)
+        
+        book.price = price
+        
+        if book.persisted?
+          book.save
+        end
       end	
     rescue
       nil
