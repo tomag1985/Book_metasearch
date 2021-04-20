@@ -17,8 +17,6 @@ class BooksController < ApplicationController
   end
   
   def create
-    # @book = Book.find_or_created_by(params[:book])
-    # UserBook.create(book:@book, user: @current)
     @book = Book.new(book_params)
     @book.user = current_user
 

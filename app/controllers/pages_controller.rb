@@ -16,6 +16,11 @@ class PagesController < ApplicationController
     @books = current_user.books
   end
 
+  def destroy
+    @book = Book.find(params[:id])
+    @book.destroy
+		redirect_to wishlist_path
+  end
 
   private
 

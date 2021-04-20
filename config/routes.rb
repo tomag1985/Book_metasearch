@@ -7,5 +7,7 @@ Rails.application.routes.draw do
 
   get 'wishlist', to: 'pages#wishlist'
 
+  post 'wishlist', to: 'pages#destroy'
+
   resources :books, only: [ :index, :show, :new, :create ]
 end
