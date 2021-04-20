@@ -53,8 +53,8 @@
                 <p class="price-item">$<%= @books[:cuspide][:price] %></p>
                 <p>Library: <%= @books[:cuspide][:library] %></p>
                 <p>Description: <%= @books[:cuspide][:description].truncate(140) %> </p>
+                  <div class="card-items d-flex align-center">
                 <% if @books[:cuspide][:href].present? %>
-                  <div class="card-items d-flex">
                     <div class="buy-item">
                       <a href="<%= @books[:cuspide][:href] %>" target="_blank"> Buy on <%= @books[:cuspide][:library] %></a>
                     </div>
@@ -74,7 +74,9 @@
                           <%= f.input :description, :as => :hidden, :input_html => { :value => @books[:cuspide][:description] } %>
                           <%= f.input :href, :as => :hidden, :input_html => { :value => @books[:cuspide][:href] } %>
                           <%= f.input :img_src, :as => :hidden, :input_html => { :value => @books[:cuspide][:img_src] } %>
-                          <%=f.submit "Add to wishlist!", class: "btn btn-primary mt-2 textclass w-100" %>
+                          <%=f.submit "Add to wishlist!", class: "btn btn-primary mt-2 textclass w-100" do %>
+                            <i class="fas fa-heart"></i>
+                          <% end %>
                         <% end %>
                       </div>                      
                     <% end %>
