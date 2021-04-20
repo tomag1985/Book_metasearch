@@ -53,18 +53,18 @@
                 <p class="price-item">$<%= @books[:cuspide][:price] %></p>
                 <p>Library: <%= @books[:cuspide][:library] %></p>
                 <p>Description: <%= @books[:cuspide][:description].truncate(140) %> </p>
-                  <div class="card-items d-flex align-center">
+                  <div class="card-items d-flex">
                 <% if @books[:cuspide][:href].present? %>
                     <div class="buy-item">
                       <a href="<%= @books[:cuspide][:href] %>" target="_blank"> Buy on <%= @books[:cuspide][:library] %></a>
                     </div>
                     
-                    <% if @books[:cuspide].persisted? %>
-                      <div class="btn btn-primary">
+                    <div class="wish-item pl-5 m-0">
+                      <% if @books[:cuspide].persisted? %>
+                        <%# <div class="btn btn-primary"> %>
                         <%= link_to 'View my wishlist', wishlist_path, :class => "btn btn-primary mt-2 textclass w-100" %>
-                      </div>
-                    <% else %>
-                      <div class="wish-item pl-5">
+                        <%# </div> %>
+                      <% else %>
                         <!-- <a href="*">Add to <i class="fas fa-heart"></i></a> -->
                         <%= simple_form_for @book do |f| %>
                           <%= f.input :title, :as => :hidden, :input_html => { :value => @books[:cuspide][:title] } %>
@@ -74,12 +74,12 @@
                           <%= f.input :description, :as => :hidden, :input_html => { :value => @books[:cuspide][:description] } %>
                           <%= f.input :href, :as => :hidden, :input_html => { :value => @books[:cuspide][:href] } %>
                           <%= f.input :img_src, :as => :hidden, :input_html => { :value => @books[:cuspide][:img_src] } %>
-                          <%=f.submit "Add to wishlist!", class: "btn btn-primary mt-2 textclass w-100" do %>
-                            <i class="fas fa-heart"></i>
+                          <%=f.button :button do %>
+                            <span>Add to <i class="fas fa-heart"></i></span>
                           <% end %>
                         <% end %>
-                      </div>                      
-                    <% end %>
+                      <% end %>
+                    </div>                      
                     
                     </div>            
                   </div>
