@@ -1,5 +1,5 @@
 <div class="container">
-  <% if @books.nil? %>
+  <% if @books.count == 0 %>
     <h3 class="my-4">No books yet :(</h3>    
   <% else %>
     <h3 class="my-4">These are your books:</h3>
@@ -24,6 +24,7 @@
                       <div class="card-items d-flex">
                         <div class="buy-item">
                           <a href="<%= book[:href] %>" target="_blank"> Buy on <%= book[:library] %></a>
+                          <%= link_to "Delete", wishlist_path(id: book.id), method: :destroy, data: { confirm: "You sure? "}, class: "btn btn-danger col-md-2-offset", style: "align-right" %>
                         </div>
                       </div>
                     <% end %>

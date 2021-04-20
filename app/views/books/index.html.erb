@@ -1,11 +1,16 @@
 <div class="container">
   <div class="row align-center">
+    <%= form_tag books_path, :method => "get" do %>
+      <%= text_field_tag :search_online, params[:search_online] %>
+      <%= submit_tag "Search", class:"btn-search" %>
+    <% end %>
+
     <div class="col-12">
       <% if @books[:description][:description] != "N/A" && @books[:description][:description] != nil %>
         <div class="jumbotron">
           <div class="mt-3 mb-2">
             <i class="fas fa-arrow-left"> </i>
-            <%= link_to " back to search", root_path %>
+            <%= link_to "back to home", root_path %>
           </div>
           <h3 class="display-6">Great choice to read "<%= @books[:title].capitalize %>"</h3>
           <p class="lead font-italic">Brief description of your selection, Powered by Google Apis.</p>
