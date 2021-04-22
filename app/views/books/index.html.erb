@@ -1,9 +1,11 @@
 <div class="container">
-  <div class="row align-center">
+  <div class="search-bar-index">
     <%= form_tag books_path, :method => "get" do %>
       <%= text_field_tag :search_online, params[:search_online] %>
       <%= submit_tag "Search", class:"btn-search" %>
     <% end %>
+  </div>
+  <div class="row align-center">
 
     <div class="col-12">
       <% if @books[:description][:description] != "N/A" && @books[:description][:description] != nil %>
