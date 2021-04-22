@@ -148,7 +148,7 @@ class BooksController < ApplicationController
         doc = Nokogiri::HTML(html_content)
 
         
-        price = doc.at_css("#product-price-138856 > span").inner_text.strip
+        price = doc.at_css("#product_addtocart_form > div.product-essential-inner > div.product-shop > div.price-box").inner_text.strip
 
         if price != ""
           price[0] = ""
