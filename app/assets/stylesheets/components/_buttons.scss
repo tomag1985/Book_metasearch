@@ -29,4 +29,32 @@
   background-color: $violet;
   border-radius: 8px;
   color: $light;
+.btn-wishlist {
+  position: absolute;
+  bottom: 0.8rem;
+  right: 3rem;
+  color: $violet;
+  font-weight: 600;
+}
+
+.btn-wishlist-delete {
+  position: absolute;
+  bottom: 1rem;
+  right: 5rem;
+  font-weight: 600;
+} 
+
+.delete-item a {
+  color: rgb(196, 36, 36);
+}
+
+.btn-wishlist:hover {
+  color: black;
+}
+
+.buy-item a {
+  bottom: 0.8rem;
+  color: $violet;
+  margin-bottom: 0;
+  font-weight: 600;
 }
