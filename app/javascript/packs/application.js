@@ -57,24 +57,26 @@ price.forEach((element => {
   }
 }));
 
-min = min.innerText;
-
-for (const a of document.querySelectorAll(".price-item")) {
-  if (a.textContent.includes(min)) {
-    min = a.closest("#badge");
+if (min) {
+  min = min.innerText;
+  
+  for (const a of document.querySelectorAll(".price-item")) {
+    if (a.textContent.includes(min)) {
+      min = a.closest("#badge");
+    }
   }
+  
+  const el = min.firstChild;
+  
+  const sec = el.nextSibling;
+  
+  const third = sec.firstChild;
+  
+  const fourth = third.nextSibling;
+  
+  const fifth = fourth.nextSibling;
+  
+  const sixth = fifth.nextSibling;
+  
+  sixth.style.display = "block";
 }
-
-const el = min.firstChild;
-
-const sec = el.nextSibling;
-
-const third = sec.firstChild;
-
-const fourth = third.nextSibling;
-
-const fifth = fourth.nextSibling;
-
-const sixth = fifth.nextSibling;
-
-sixth.style.display = "block";
