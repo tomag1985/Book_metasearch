@@ -270,11 +270,11 @@ class BooksController < ApplicationController
       doc = Nokogiri::HTML(html_content)
       library = "Mercado Libre"
     
-      title = doc.at_css("#root-app > div > div.ui-search-main.ui-search-main--exhibitor.ui-search-main--only-products > section > ol > li:nth-child(1) > div > div > div.ui-search-result__content-wrapper > div.ui-search-item__group.ui-search-item__group--title > a.ui-search-item__group__element.ui-search-link > h2").inner_text
+      title = doc.at_css("#root-app > div > div.ui-search-main.ui-search-main--only-products > section > ol > li:nth-child(1) > div > div > div.ui-search-result__content-wrapper > div.ui-search-item__group.ui-search-item__group--title > a.ui-search-item__group__element.ui-search-link > h2").inner_text
       
       if title != nil
-        img_src = doc.at_css("#root-app > div > div.ui-search-main.ui-search-main--exhibitor.ui-search-main--only-products > section > ol > li:nth-child(1) > div > div > div.ui-search-result__image > a > div > div > div > div > div > img")["data-src"]
-        href = doc.at_css("#root-app > div > div.ui-search-main.ui-search-main--exhibitor.ui-search-main--only-products > section > ol > li:nth-child(1) > div > div > div.ui-search-result__image > a")["href"]
+        img_src = doc.at_css("#root-app > div > div.ui-search-main.ui-search-main--only-products > section > ol > li:nth-child(1) > div > div > div.ui-search-result__image > a > div > div > div > div > div > img")["data-src"]
+        href = doc.at_css("#root-app > div > div.ui-search-main.ui-search-main--only-products > section > ol > li:nth-child(1) > div > div > div.ui-search-result__content-wrapper > div.ui-search-item__group.ui-search-item__group--title > a.ui-search-item__group__element.ui-search-link")["href"]
 
         html_content = open(href)
         doc = Nokogiri::HTML(html_content)
@@ -300,8 +300,8 @@ class BooksController < ApplicationController
 
         book
       end
-    rescue OpenURI::HTTPError => ex
-      nil
+    rescue
+     nil
     end
   end
 
